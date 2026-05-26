@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 具身智能, 三维视觉, NeRF, 3DGS, 强化学习, 多模态, 安全学习">
+    <meta name="keywords" content="具身智能学习笔记 01：背景、闭环与核心挑战, 具身智能, 三维视觉, NeRF, 3DGS, 强化学习, 多模态, 安全学习">
     <meta name="description" content="记录具身智能、三维视觉、强化学习、多模态模型与安全技术学习过程。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | MuQ</title>
+    <title>具身智能学习笔记 01：背景、闭环与核心挑战 | MuQ</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">具身智能学习笔记 01：背景、闭环与核心挑战</h1>
                 </div>
             </div>
         </div>
@@ -407,12 +407,33 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD/">
+                                <span class="chip bg-color">具身智能</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">学习笔记</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%99%BA%E8%83%BD%E4%BD%93/">
+                                <span class="chip bg-color">智能体</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD/" class="post-category">
+                                具身智能
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -421,7 +442,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-07-09
+                    2026-05-16
                 </div>
                 
 
@@ -442,19 +463,33 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <p>最近开始系统学习《具身智能原理与实践》，这篇先整理第一天的背景概念。我的目标不是把书上的内容重新抄一遍，而是把每个概念放到“智能体如何在物理世界中完成任务”的问题里理解。</p>
+<h2 id="什么是具身智能"><a href="#什么是具身智能" class="headerlink" title="什么是具身智能"></a>什么是具身智能</h2><p>具身智能强调智能体通过“本体”与物理环境发生交互。这里的智能不是只停留在文本、图像或离线推理中，而是需要通过身体、传感器、执行器和环境反馈形成闭环。</p>
+<p>可以把它拆成三个部分：</p>
+<ul>
+<li>本体：机器人、机械臂、移动平台或其他可以承载感知与动作的实体。</li>
+<li>智能系统：负责感知、理解、规划、决策和控制的算法系统。</li>
+<li>环境交互：智能体在真实或仿真环境中执行动作，并接收反馈。</li>
+</ul>
+<h2 id="从离身智能到具身智能"><a href="#从离身智能到具身智能" class="headerlink" title="从离身智能到具身智能"></a>从离身智能到具身智能</h2><p>离身智能更像是在静态数据上完成识别、生成或推理，例如回答问题、识别图片、生成文本。具身智能则多了一层现实约束：智能体必须在环境中行动，并为行动结果负责。</p>
+<p>这种差异让具身智能天然带有“闭环”特征：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">感知 -&gt; 理解 / 规划 -&gt; 执行 -&gt; 环境反馈 -&gt; 再感知</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>这个闭环也是后续理解三维视觉、强化学习、多模态模型和机器人控制的主线。</p>
+<h2 id="核心组成"><a href="#核心组成" class="headerlink" title="核心组成"></a>核心组成</h2><h3 id="感知"><a href="#感知" class="headerlink" title="感知"></a>感知</h3><p>感知负责让智能体理解环境。当前的趋势是从多个独立算法，逐渐走向统一的技术框架，例如视觉基础模型、CLIP、MVP、R3M 这类视觉表示，以及结合视觉语言模型的多模态数据理解。</p>
+<h3 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h3><p>规划负责把目标拆成可执行步骤。对于具身智能来说，规划不只是“想出步骤”，还要考虑环境状态、动作可行性、任务约束和执行反馈。</p>
+<h3 id="操控"><a href="#操控" class="headerlink" title="操控"></a>操控</h3><p>操控负责把计划落到动作上。强化学习常用于学习控制策略，但泛化能力仍然是难点。近年来也出现了把 Transformer 架构、大模型和机器人动作结合起来的 VLA 模型方向。</p>
+<h2 id="主要挑战"><a href="#主要挑战" class="headerlink" title="主要挑战"></a>主要挑战</h2><p>学习第一天后，我觉得具身智能的难点可以分成几类：</p>
+<ul>
+<li>数据层面：高质量交互数据稀缺，真实机器人数据采集成本高。</li>
+<li>模型层面：智能化水平仍需提高，尤其是跨场景泛化能力。</li>
+<li>任务分解：复杂任务如何拆解成稳定、可执行的子任务仍然困难。</li>
+<li>世界模型：模型对真实物理世界的抽象能力有限。</li>
+<li>推理效率：大模型推理速度较慢，影响实时交互。</li>
+<li>系统层面：标准化、适配性和可靠性仍需要工程化积累。</li>
+<li>伦理价值：具身系统进入真实环境后，安全和价值对齐会更重要。</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这一天的重点是建立整体框架：具身智能不是单一算法，而是“本体 + 智能系统 + 环境交互”的系统问题。后续学习三维视觉、强化学习和多模态模型时，我会继续把它们放回这个闭环里理解。</p>
 
                 
             </div>
@@ -481,7 +516,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://muq0r3.github.io/2024/07/09/hello-world/">https://muq0r3.github.io/2024/07/09/hello-world/</a>
+                    <a href="https://muq0r3.github.io/2026/05/16/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01-%E8%83%8C%E6%99%AF-%E9%97%AD%E7%8E%AF%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%8C%91%E6%88%98/">https://muq0r3.github.io/2026/05/16/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01-%E8%83%8C%E6%99%AF-%E9%97%AD%E7%8E%AF%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%8C%91%E6%88%98/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -518,7 +553,19 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD/">
+                                    <span class="chip bg-color">具身智能</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">学习笔记</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%99%BA%E8%83%BD%E4%BD%93/">
+                                    <span class="chip bg-color">智能体</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -564,13 +611,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/08/15/%E5%AD%A6%E4%B9%A0%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E-Zero-knowledge-proof/">
+                <a href="/2026/05/18/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-02-%E4%B8%89%E7%BB%B4%E8%A7%86%E8%A7%89-NeRF-%E4%B8%8E-3DGS/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="学习零知识证明（Zero-knowledge proof）">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="具身智能学习笔记 02：三维视觉、NeRF 与 3DGS">
                         
-                        <span class="card-title">学习零知识证明（Zero-knowledge proof）</span>
+                        <span class="card-title">具身智能学习笔记 02：三维视觉、NeRF 与 3DGS</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -581,8 +628,69 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-08-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-05-18
                         </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD/" class="post-category">
+                                    具身智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD/">
+                        <span class="chip bg-color">具身智能</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%B8%89%E7%BB%B4%E8%A7%86%E8%A7%89/">
+                        <span class="chip bg-color">三维视觉</span>
+                    </a>
+                    
+                    <a href="/tags/NeRF/">
+                        <span class="chip bg-color">NeRF</span>
+                    </a>
+                    
+                    <a href="/tags/3DGS/">
+                        <span class="chip bg-color">3DGS</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/02/14/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0AFL/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="从零开始学习AFL">
+                        
+                        <span class="card-title">从零开始学习AFL</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -598,57 +706,19 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E/">
-                        <span class="chip bg-color">零知识证明</span>
+                    <a href="/tags/AFL/">
+                        <span class="chip bg-color">AFL</span>
                     </a>
                     
-                    <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">
-                        <span class="chip bg-color">密码学</span>
+                    <a href="/tags/Fuzzing/">
+                        <span class="chip bg-color">Fuzzing</span>
                     </a>
                     
-                    <a href="/tags/%E9%9A%90%E7%A7%81%E8%AE%A1%E7%AE%97/">
-                        <span class="chip bg-color">隐私计算</span>
+                    <a href="/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/">
+                        <span class="chip bg-color">模糊测试</span>
                     </a>
                     
                 </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2024/07/09/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-09
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            MuQ
-                            
-                        </span>
-                    </div>
-                </div>
-
                 
             </div>
         </div>

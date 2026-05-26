@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 具身智能, 三维视觉, NeRF, 3DGS, 强化学习, 多模态, 安全学习">
+    <meta name="keywords" content="从零开始学习AFL, 具身智能, 三维视觉, NeRF, 3DGS, 强化学习, 多模态, 安全学习">
     <meta name="description" content="记录具身智能、三维视觉、强化学习、多模态模型与安全技术学习过程。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | MuQ</title>
+    <title>从零开始学习AFL | MuQ</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">从零开始学习AFL</h1>
                 </div>
             </div>
         </div>
@@ -407,12 +407,33 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/AFL/">
+                                <span class="chip bg-color">AFL</span>
+                            </a>
+                        
+                            <a href="/tags/Fuzzing/">
+                                <span class="chip bg-color">Fuzzing</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/">
+                                <span class="chip bg-color">模糊测试</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                安全学习
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -421,7 +442,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-07-09
+                    2025-02-14
                 </div>
                 
 
@@ -442,20 +463,40 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <h1 id="从零开始学习AFL"><a href="#从零开始学习AFL" class="headerlink" title="从零开始学习AFL"></a>从零开始学习AFL</h1><h2 id="一、一些名词"><a href="#一、一些名词" class="headerlink" title="一、一些名词"></a>一、一些名词</h2><h2 id="二、AFL的使用"><a href="#二、AFL的使用" class="headerlink" title="二、AFL的使用"></a>二、AFL的使用</h2><p>模糊测试（Fuzz Testing）是一种通过向程序输入大量随机或半随机数据来发现软件漏洞的技术。American Fuzzy Lop (AFL) 是一个广泛使用的模糊测试工具，特别适用于C&#x2F;C++程序的漏洞挖掘。以下是使用AFL进行模糊测试的全过程：</p>
+<h3 id="1-准备目标程序"><a href="#1-准备目标程序" class="headerlink" title="1. 准备目标程序"></a>1. 准备目标程序</h3><p>你需要一个目标程序来进行模糊测试。假设你有一个C程序 <code>target.c</code>，你可以使用AFL的编译器来编译它：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用AFL的编译器编译目标程序</span></span><br><span class="line">afl-gcc -o target target.c</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="2-创建测试用例"><a href="#2-创建测试用例" class="headerlink" title="2. 创建测试用例"></a>2. 创建测试用例</h3><p>AFL需要一个初始的测试用例集来开始模糊测试。可以创建一个简单的输入文件作为初始测试用例，这个输入的种子文件可以很多，最好能让程序target.c正常运行，这样可以加快fuzz的效率：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> <span class="keyword">in</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;seed input&quot;</span> &gt; <span class="keyword">in</span>/seed1</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="3-开始模糊测试"><a href="#3-开始模糊测试" class="headerlink" title="3. 开始模糊测试"></a>3. 开始模糊测试</h3><p>使用AFL进行模糊测试的基本命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afl-fuzz -i <span class="keyword">in</span> -o out ./target</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-i in</code>：指定输入目录，包含初始测试用例。</li>
+<li><code>-o out</code>：指定输出目录，AFL将在此目录中存储测试结果。</li>
+<li><code>./target</code>：目标程序。</li>
+</ul>
+<h3 id="4-监控模糊测试过程"><a href="#4-监控模糊测试过程" class="headerlink" title="4. 监控模糊测试过程"></a>4. 监控模糊测试过程</h3><p>AFL会显示一个实时状态界面，显示当前的测试进度、发现的崩溃、执行速度等信息。你可以通过这个界面监控模糊测试的进展。</p>
+<h3 id="5-分析结果"><a href="#5-分析结果" class="headerlink" title="5. 分析结果"></a>5. 分析结果</h3><p>模糊测试完成后，你可以在输出目录 <code>out</code> 中找到测试结果。</p>
+<h3 id="out-目录的常见结构"><a href="#out-目录的常见结构" class="headerlink" title="out 目录的常见结构"></a><code>out</code> 目录的常见结构</h3><p>AFL的输出目录（<code>out</code>）通常包含以下子目录和文件：</p>
+<ol>
+<li>**<code>queue/</code>**：存储所有有趣的测试用例。</li>
+<li>**<code>crashes/</code>**：存储导致目标程序崩溃的输入文件。</li>
+<li>**<code>hangs/</code>**：存储导致目标程序超时或挂起的输入文件。</li>
+<li>**<code>fuzz_bitmap</code>**：AFL的内部状态文件，记录程序的覆盖情况。</li>
+<li>**<code>fuzzer_stats</code>**：记录模糊测试的统计信息，如执行速度、路径数量等。</li>
+<li>**<code>plot_data</code>**：用于生成模糊测试进度图的数据文件。</li>
+</ol>
+<p>假设你运行了以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afl-fuzz -i <span class="keyword">in</span> -o out ./target</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>在模糊测试过程中，AFL会在 <code>out</code> 目录中生成以下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">out/</span><br><span class="line">├── crashes/       # 导致崩溃的输入</span><br><span class="line">├── hangs/         # 导致程序挂起的输入</span><br><span class="line">├── queue/         # 有趣的测试用例</span><br><span class="line">├── fuzz_bitmap    # 覆盖信息</span><br><span class="line">├── fuzzer_stats   # 统计信息</span><br><span class="line">└── plot_data      # 进度数据</span><br></pre></td></tr></table></figure>
 
+<p><img src="https://storage.tttang.com/media/attachment/2022/03/26/d54c073e-b3cd-4ded-b45b-ea099b311caf.png" alt="overview.png"></p>
+<h2 id="三、AFL源码阅读"><a href="#三、AFL源码阅读" class="headerlink" title="三、AFL源码阅读"></a>三、AFL源码阅读</h2>
                 
             </div>
             <hr/>
@@ -481,7 +522,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://muq0r3.github.io/2024/07/09/hello-world/">https://muq0r3.github.io/2024/07/09/hello-world/</a>
+                    <a href="https://muq0r3.github.io/2025/02/14/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0AFL/">https://muq0r3.github.io/2025/02/14/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0AFL/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -518,7 +559,19 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/AFL/">
+                                    <span class="chip bg-color">AFL</span>
+                                </a>
+                            
+                                <a href="/tags/Fuzzing/">
+                                    <span class="chip bg-color">Fuzzing</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/">
+                                    <span class="chip bg-color">模糊测试</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -564,13 +617,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/08/15/%E5%AD%A6%E4%B9%A0%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E-Zero-knowledge-proof/">
+                <a href="/2026/05/16/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-01-%E8%83%8C%E6%99%AF-%E9%97%AD%E7%8E%AF%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%8C%91%E6%88%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="学习零知识证明（Zero-knowledge proof）">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="具身智能学习笔记 01：背景、闭环与核心挑战">
                         
-                        <span class="card-title">学习零知识证明（Zero-knowledge proof）</span>
+                        <span class="card-title">具身智能学习笔记 01：背景、闭环与核心挑战</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -581,8 +634,65 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-08-15
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-05-16
                         </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD/" class="post-category">
+                                    具身智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD/">
+                        <span class="chip bg-color">具身智能</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%99%BA%E8%83%BD%E4%BD%93/">
+                        <span class="chip bg-color">智能体</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/01/07/SQLMap/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="SQLMap">
+                        
+                        <span class="card-title">SQLMap</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-01-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -598,57 +708,19 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E/">
-                        <span class="chip bg-color">零知识证明</span>
+                    <a href="/tags/SQLMap/">
+                        <span class="chip bg-color">SQLMap</span>
                     </a>
                     
-                    <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">
-                        <span class="chip bg-color">密码学</span>
+                    <a href="/tags/Web%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">Web安全</span>
                     </a>
                     
-                    <a href="/tags/%E9%9A%90%E7%A7%81%E8%AE%A1%E7%AE%97/">
-                        <span class="chip bg-color">隐私计算</span>
+                    <a href="/tags/SQL%E6%B3%A8%E5%85%A5/">
+                        <span class="chip bg-color">SQL注入</span>
                     </a>
                     
                 </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2024/07/09/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-09
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            MuQ
-                            
-                        </span>
-                    </div>
-                </div>
-
                 
             </div>
         </div>
