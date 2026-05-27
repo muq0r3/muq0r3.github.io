@@ -177,6 +177,20 @@ code {
     transition: all .3s;
 }
 
+.code-area.code-closed {
+    min-height: 2.25rem;
+}
+
+.code-area.code-closed::after {
+    content: none;
+}
+
+.code-area.code-closed .code_copy,
+.code-area.code-closed .code_lang,
+.code-area.code-closed .codecopy_notice {
+    display: none;
+}
+
 .code-closed pre::before {
     height: 0;
 }
