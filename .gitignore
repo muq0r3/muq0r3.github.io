@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+db.json
+*.log
+*.swp
+node_modules/
+public/
+.deploy*/
+.superpowers/
+themes/yilia/
+_multiconfig.yml
