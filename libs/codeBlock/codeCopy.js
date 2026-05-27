@@ -1,37 +1,40 @@
-// 代码块一键复制
-
+// One-click code block copy.
 $(function () {
-    var $copyIcon = $('<i class="fas fa-copy code_copy" title="复制代码" aria-hidden="true"></i>')
-    var $notice = $('<div class="codecopy_notice"></div>')
-    $('.code-area').prepend($copyIcon)
-    $('.code-area').prepend($notice)
-    // “复制成功”字出现
+    $('.code-area').each(function () {
+        var $block = $(this);
+        $block.children('.code_copy, .codecopy_notice').remove();
+        $block.prepend('<i class="fas fa-copy code_copy" title="复制代码" aria-hidden="true"></i>');
+        $block.prepend('<div class="codecopy_notice"></div>');
+    });
+
     function copy(text, ctx) {
+        var $notice = $(ctx).siblings('.codecopy_notice');
+
         if (document.queryCommandSupported && document.queryCommandSupported('copy')) {
             try {
-                document.execCommand('copy') // Security exception may be thrown by some browsers.
-                $(ctx).prev('.codecopy_notice')
+                document.execCommand('copy');
+                $notice
                     .text("复制成功")
                     .animate({
                         opacity: 1,
                         top: 30
                     }, 450, function () {
                         setTimeout(function () {
-                            $(ctx).prev('.codecopy_notice').animate({
+                            $notice.animate({
                                 opacity: 0,
                                 top: 0
                             }, 650)
                         }, 400)
                     })
             } catch (ex) {
-                $(ctx).prev('.codecopy_notice')
+                $notice
                     .text("复制失败")
                     .animate({
                         opacity: 1,
                         top: 30
                     }, 650, function () {
                         setTimeout(function () {
-                            $(ctx).prev('.codecopy_notice').animate({
+                            $notice.animate({
                                 opacity: 0,
                                 top: 0
                             }, 650)
@@ -40,14 +43,21 @@ $(function () {
                 return false
             }
         } else {
-            $(ctx).prev('.codecopy_notice').text("浏览器不支持复制")
+            $notice.text("浏览器不支持复制")
         }
     }
-    // 复制
+
     $('.code-area .fa-copy').on('click', function () {
+        var $block = $(this).closest('.code-area');
+        var codeNode = $block.find('td.code pre')[0] || $block.children('pre').find('code')[0] || $block.children('pre')[0];
+
+        if (!codeNode) {
+            return;
+        }
+
         var selection = window.getSelection()
         var range = document.createRange()
-        range.selectNodeContents($(this).siblings('pre').find('code')[0])
+        range.selectNodeContents(codeNode)
         selection.removeAllRanges()
         selection.addRange(range)
         var text = selection.toString()
