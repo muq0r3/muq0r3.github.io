@@ -467,40 +467,47 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Llama-2-架构"><a href="#Llama-2-架构" class="headerlink" title="Llama 2 架构"></a>Llama 2 架构</h2><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><ul>
-<li>标准 Transformer</li>
-<li>pre-normalization using RMSNorm [GPT3]</li>
-<li>SwiGLU 激活函数 [PaLM]</li>
-<li>旋转位置编码 [GPTNeo]</li>
-<li>上下文长度到 4k（Llama 1 是 2k）</li>
-<li>分组查询注意力（Grouped-Query Attention, GQA）</li>
+                <p>这篇笔记整理 Llama 2 的几个关键结构，作为后续理解 zkLLM、模型推理验证和大模型系统优化的基础。</p>
+<span id="more"></span>
+
+<h2 id="Llama-2-的整体结构"><a href="#Llama-2-的整体结构" class="headerlink" title="Llama 2 的整体结构"></a>Llama 2 的整体结构</h2><p>Llama 2 采用 Decoder-only Transformer 架构，主要面向自回归语言建模。和 Encoder-Decoder 结构相比，它的结构更直接：模型根据前文 token 预测下一个 token。</p>
+<p>几个关键特征包括：</p>
+<ul>
+<li>Decoder-only Transformer。</li>
+<li>Pre-normalization，也就是在子层之前进行归一化。</li>
+<li>使用 RMSNorm。</li>
+<li>使用 SwiGLU 激活函数。</li>
+<li>使用 RoPE 旋转位置编码。</li>
+<li>上下文长度从 Llama 1 的 2K 扩展到 4K。</li>
+<li>部分模型使用 Grouped-Query Attention（GQA）降低推理开销。</li>
 </ul>
-<h3 id="超参数"><a href="#超参数" class="headerlink" title="超参数"></a>超参数</h3><ul>
-<li>AdamW 优化器，β1 &#x3D; 0.9, β2 &#x3D; 0.95, eps &#x3D; 10.5</li>
-<li>cosine 学习率调度，warmup of 2000 steps，最终学习率衰减到最大值的 10%</li>
-<li>权重衰减（weight decay）0.1</li>
-<li>梯度裁剪（gradient clipping）1.0</li>
+<h2 id="RMSNorm-与前置归一化"><a href="#RMSNorm-与前置归一化" class="headerlink" title="RMSNorm 与前置归一化"></a>RMSNorm 与前置归一化</h2><p>Llama 2 使用 RMSNorm，而不是传统 LayerNorm。RMSNorm 只根据均方根进行缩放，省去了均值中心化步骤，计算更轻量。</p>
+<p>前置归一化的结构通常更有利于深层 Transformer 的训练稳定性。简单理解就是：先把输入规范化，再进入注意力层或前馈网络。</p>
+<h2 id="RoPE-旋转位置编码"><a href="#RoPE-旋转位置编码" class="headerlink" title="RoPE 旋转位置编码"></a>RoPE 旋转位置编码</h2><p>RoPE（Rotary Position Embedding）会把位置信息注入到 Query 和 Key 中。它不是把位置向量直接加到 token embedding 上，而是通过旋转变换让注意力计算感知相对位置。</p>
+<p>RoPE 的好处是：</p>
+<ul>
+<li>更适合自回归模型。</li>
+<li>对相对位置关系表达更自然。</li>
+<li>在长上下文扩展中有较多改进空间。</li>
 </ul>
-<h3 id="分词器"><a href="#分词器" class="headerlink" title="分词器"></a>分词器</h3><ul>
-<li>BPE，使用 SentencePiece 实现</li>
-<li>所有数字 split 成 individual digits</li>
-<li>未知的 UTF-8 字符用 byte 表示</li>
-<li>词表大小 32K</li>
+<h2 id="SwiGLU-前馈网络"><a href="#SwiGLU-前馈网络" class="headerlink" title="SwiGLU 前馈网络"></a>SwiGLU 前馈网络</h2><p>Llama 2 的前馈网络使用 SwiGLU。和普通 FFN 相比，SwiGLU 通过门控机制增强非线性表达能力。</p>
+<p>从直觉上看，门控结构可以让模型更灵活地选择哪些中间特征被保留，哪些被抑制。</p>
+<h2 id="Causal-Mask"><a href="#Causal-Mask" class="headerlink" title="Causal Mask"></a>Causal Mask</h2><p>自回归语言模型只能看到当前位置之前的 token，不能偷看未来信息。因此训练和推理中都需要 causal mask。</p>
+<p>这个 mask 保证第 <code>t</code> 个位置只能依赖 <code>0</code> 到 <code>t</code> 的上下文，符合文本生成的因果顺序。</p>
+<h2 id="KV-Cache"><a href="#KV-Cache" class="headerlink" title="KV Cache"></a>KV Cache</h2><p>推理阶段如果每生成一个 token 都重新计算完整上下文，会非常浪费。KV Cache 会缓存过去 token 的 Key 和 Value，让后续生成只计算新增 token 的部分。</p>
+<p>它能显著提升生成速度，但也会带来显存占用问题。上下文越长，KV Cache 越大。</p>
+<h2 id="Grouped-Query-Attention"><a href="#Grouped-Query-Attention" class="headerlink" title="Grouped-Query Attention"></a>Grouped-Query Attention</h2><p>Grouped-Query Attention 是 Multi-Query Attention 和 Multi-Head Attention 之间的折中。它让多组 Query 共享较少的 Key&#x2F;Value 头，从而减少 KV Cache 规模。</p>
+<p>这个设计对于推理非常有用，因为大模型部署时常常受限于显存带宽和 KV Cache 占用。</p>
+<h2 id="和-zkLLM-的关系"><a href="#和-zkLLM-的关系" class="headerlink" title="和 zkLLM 的关系"></a>和 zkLLM 的关系</h2><p>如果要把大模型推理放到零知识证明或可验证计算框架中，模型结构会直接影响证明成本。</p>
+<p>需要重点关注：</p>
+<ul>
+<li>矩阵乘法的证明开销。</li>
+<li>激活函数是否容易算术化。</li>
+<li>注意力机制中的 softmax 和归一化。</li>
+<li>KV Cache 和长上下文带来的状态规模。</li>
+<li>量化后模型是否更适合证明系统。</li>
 </ul>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/07c9551f8bd69784c4a6d5bde522b5fe.png" alt="Llama 2 tokenizer"></p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/30b912654bb11e191643f29aeeae0574.png" alt="Llama 2 architecture"></p>
-<h2 id="关键设计理解"><a href="#关键设计理解" class="headerlink" title="关键设计理解"></a>关键设计理解</h2><h3 id="只保留-Decoder"><a href="#只保留-Decoder" class="headerlink" title="只保留 Decoder"></a>只保留 Decoder</h3><p>Llama 2 取消 Encoder，仅保留 Decoder。这一设计使模型结构更简洁，专注于生成和解码任务。</p>
-<h3 id="RMSNorm-与前置归一化"><a href="#RMSNorm-与前置归一化" class="headerlink" title="RMSNorm 与前置归一化"></a>RMSNorm 与前置归一化</h3><p>Llama 2 采用 RMSNorm 并将 Norm 前置。这种归一化方式有助于提高模型训练稳定性和收敛速度。</p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/e674779239772268716aa73cfceff4fc.png" alt="RMSNorm"></p>
-<h3 id="RoPE-旋转位置编码"><a href="#RoPE-旋转位置编码" class="headerlink" title="RoPE 旋转位置编码"></a>RoPE 旋转位置编码</h3><p>在 Q 和 K 上使用 RoPE 旋转式位置编码，可以更好地捕捉序列中的位置信息，提高模型表达能力。</p>
-<h3 id="Causal-Mask"><a href="#Causal-Mask" class="headerlink" title="Causal Mask"></a>Causal Mask</h3><p>使用 causal mask 确保每个位置只能看到前面的 tokens。这保证模型在生成文本时，每个位置只依赖前面的 tokens，符合语言生成的因果性。</p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/59f3ef3141034e7826e1872e83c38365.png" alt="Causal mask"></p>
-<h3 id="KV-Cache"><a href="#KV-Cache" class="headerlink" title="KV Cache"></a>KV Cache</h3><p>更早地将 K、V 拼接到当前 K、V 前面，使模型能够利用更多上下文信息，提高文本生成的一致性和连贯性。</p>
-<h3 id="Grouped-Query-Attention"><a href="#Grouped-Query-Attention" class="headerlink" title="Grouped-Query Attention"></a>Grouped-Query Attention</h3><p>Llama 2 使用 Grouped-Query Attention 来节省 cache。这一优化减少了模型计算量和内存占用，提高了推理效率。</p>
-<h2 id="FFN-计算"><a href="#FFN-计算" class="headerlink" title="FFN 计算"></a>FFN 计算</h2><p>在自注意力计算输出后，Llama 2 会将其与输入进行残差连接，然后进行 FFN（前馈神经网络）计算输出 y。这个过程进一步捕获非线性特征，并增强模型表达能力。</p>
-<p>在 Llama 2 中，FFN 由两个线性层和一个激活函数组成。首先，输入向量会经过一个线性变换，然后经过激活函数（如 SiLU），最后再进行另一个线性变换，得到输出向量 y。</p>
-<p>具体计算过程为：</p>
-<p><img src="https://i-blog.csdnimg.cn/blog_migrate/e0257173ff66f860102c52a1ab7c241d.png" alt="FFN"></p>
+<p>所以学习 Llama 2 架构不仅是为了理解模型本身，也是在为后续理解 zkLLM 中“如何证明一次推理确实按模型执行”打基础。</p>
 
                 
             </div>
@@ -638,7 +645,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            SQLMap 是一款开源的自动化 SQL 注入检测与利用工具，常用于授权场景下的 Web 安全测试。它可以帮助安全研究人员快速判断目标参数是否存在 SQL 注入风险，并进一步枚举数据库、表结构或验证漏洞影响。
                         
                     </div>
                     <div class="publish-info">
@@ -695,7 +702,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            零知识证明是一类非常有意思的密码学思想：证明者可以让验证者相信某个命题是真的，同时不泄露除“命题为真”之外的额外信息。
                         
                     </div>
                     <div class="publish-info">

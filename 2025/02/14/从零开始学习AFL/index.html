@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="从零开始学习AFL, 具身智能, 三维视觉, NeRF, 3DGS, 强化学习, 多模态, 安全学习">
+    <meta name="keywords" content="从零开始学习 AFL, 具身智能, 三维视觉, NeRF, 3DGS, 强化学习, 多模态, 安全学习">
     <meta name="description" content="记录具身智能、三维视觉、强化学习、多模态模型与安全技术学习过程。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>从零开始学习AFL | MuQ</title>
+    <title>从零开始学习 AFL | MuQ</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">从零开始学习AFL</h1>
+                    <h1 class="description center-align post-title">从零开始学习 AFL</h1>
                 </div>
             </div>
         </div>
@@ -463,40 +463,64 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="从零开始学习AFL"><a href="#从零开始学习AFL" class="headerlink" title="从零开始学习AFL"></a>从零开始学习AFL</h1><h2 id="一、一些名词"><a href="#一、一些名词" class="headerlink" title="一、一些名词"></a>一、一些名词</h2><h2 id="二、AFL的使用"><a href="#二、AFL的使用" class="headerlink" title="二、AFL的使用"></a>二、AFL的使用</h2><p>模糊测试（Fuzz Testing）是一种通过向程序输入大量随机或半随机数据来发现软件漏洞的技术。American Fuzzy Lop (AFL) 是一个广泛使用的模糊测试工具，特别适用于C&#x2F;C++程序的漏洞挖掘。以下是使用AFL进行模糊测试的全过程：</p>
-<h3 id="1-准备目标程序"><a href="#1-准备目标程序" class="headerlink" title="1. 准备目标程序"></a>1. 准备目标程序</h3><p>你需要一个目标程序来进行模糊测试。假设你有一个C程序 <code>target.c</code>，你可以使用AFL的编译器来编译它：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用AFL的编译器编译目标程序</span></span><br><span class="line">afl-gcc -o target target.c</span><br></pre></td></tr></table></figure>
+                <p>AFL，也就是 American Fuzzy Lop，是一个经典的覆盖率引导模糊测试工具。它通过不断变异输入、观察程序执行路径和崩溃情况，帮助研究人员发现解析器、文件处理程序和 C&#x2F;C++ 程序中的潜在漏洞。</p>
+<span id="more"></span>
 
-<h3 id="2-创建测试用例"><a href="#2-创建测试用例" class="headerlink" title="2. 创建测试用例"></a>2. 创建测试用例</h3><p>AFL需要一个初始的测试用例集来开始模糊测试。可以创建一个简单的输入文件作为初始测试用例，这个输入的种子文件可以很多，最好能让程序target.c正常运行，这样可以加快fuzz的效率：</p>
+<h2 id="为什么学习-AFL"><a href="#为什么学习-AFL" class="headerlink" title="为什么学习 AFL"></a>为什么学习 AFL</h2><p>模糊测试的核心思想并不复杂：向程序输入大量自动生成或变异的数据，观察程序是否崩溃、卡死或出现异常行为。AFL 的优势在于它会利用覆盖率反馈保留“更有价值”的测试用例，从而比纯随机测试更高效。</p>
+<p>学习 AFL 可以帮助理解：</p>
+<ul>
+<li>程序输入如何触发不同执行路径。</li>
+<li>覆盖率反馈如何指导测试用例变异。</li>
+<li>崩溃样本如何被保存和复现。</li>
+<li>安全测试中如何从工具结果回到漏洞根因分析。</li>
+</ul>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><strong>目标程序</strong> 是被测试的程序。它最好能从文件或标准输入读取数据，并且可以快速启动和退出。</p>
+<p><strong>种子输入</strong> 是模糊测试开始时使用的初始样本。好的种子通常能被目标程序正常解析，并覆盖基础逻辑。</p>
+<p><strong>插桩编译</strong> 是指用 AFL 提供的编译器包装器编译程序，让 AFL 能观察目标程序的执行路径。</p>
+<p><strong>崩溃样本</strong> 是导致目标程序异常退出的输入。后续分析时，需要尽量复现崩溃并定位触发路径。</p>
+<h2 id="最小使用流程"><a href="#最小使用流程" class="headerlink" title="最小使用流程"></a>最小使用流程</h2><h3 id="1-准备目标程序"><a href="#1-准备目标程序" class="headerlink" title="1. 准备目标程序"></a>1. 准备目标程序</h3><p>假设目标程序是 <code>target.c</code>，可以使用 AFL 的编译器进行编译：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afl-gcc -o target target.c</span><br></pre></td></tr></table></figure>
+
+<p>如果使用 C++，通常可以改用 <code>afl-g++</code>。</p>
+<h3 id="2-准备种子输入"><a href="#2-准备种子输入" class="headerlink" title="2. 准备种子输入"></a>2. 准备种子输入</h3><p>AFL 需要一个输入目录作为初始语料库：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> <span class="keyword">in</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;seed input&quot;</span> &gt; <span class="keyword">in</span>/seed1</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-开始模糊测试"><a href="#3-开始模糊测试" class="headerlink" title="3. 开始模糊测试"></a>3. 开始模糊测试</h3><p>使用AFL进行模糊测试的基本命令如下：</p>
+<p>种子不一定要复杂，但最好能让目标程序走到正常解析逻辑。</p>
+<h3 id="3-启动模糊测试"><a href="#3-启动模糊测试" class="headerlink" title="3. 启动模糊测试"></a>3. 启动模糊测试</h3><p>基本命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afl-fuzz -i <span class="keyword">in</span> -o out ./target</span><br></pre></td></tr></table></figure>
 
+<p>参数含义：</p>
 <ul>
-<li><code>-i in</code>：指定输入目录，包含初始测试用例。</li>
-<li><code>-o out</code>：指定输出目录，AFL将在此目录中存储测试结果。</li>
-<li><code>./target</code>：目标程序。</li>
+<li><code>-i in</code>：指定输入目录。</li>
+<li><code>-o out</code>：指定输出目录。</li>
+<li><code>./target</code>：指定被测程序。</li>
 </ul>
-<h3 id="4-监控模糊测试过程"><a href="#4-监控模糊测试过程" class="headerlink" title="4. 监控模糊测试过程"></a>4. 监控模糊测试过程</h3><p>AFL会显示一个实时状态界面，显示当前的测试进度、发现的崩溃、执行速度等信息。你可以通过这个界面监控模糊测试的进展。</p>
-<h3 id="5-分析结果"><a href="#5-分析结果" class="headerlink" title="5. 分析结果"></a>5. 分析结果</h3><p>模糊测试完成后，你可以在输出目录 <code>out</code> 中找到测试结果。</p>
-<h3 id="out-目录的常见结构"><a href="#out-目录的常见结构" class="headerlink" title="out 目录的常见结构"></a><code>out</code> 目录的常见结构</h3><p>AFL的输出目录（<code>out</code>）通常包含以下子目录和文件：</p>
-<ol>
-<li>**<code>queue/</code>**：存储所有有趣的测试用例。</li>
-<li>**<code>crashes/</code>**：存储导致目标程序崩溃的输入文件。</li>
-<li>**<code>hangs/</code>**：存储导致目标程序超时或挂起的输入文件。</li>
-<li>**<code>fuzz_bitmap</code>**：AFL的内部状态文件，记录程序的覆盖情况。</li>
-<li>**<code>fuzzer_stats</code>**：记录模糊测试的统计信息，如执行速度、路径数量等。</li>
-<li>**<code>plot_data</code>**：用于生成模糊测试进度图的数据文件。</li>
-</ol>
-<p>假设你运行了以下命令：</p>
+<h3 id="4-观察运行状态"><a href="#4-观察运行状态" class="headerlink" title="4. 观察运行状态"></a>4. 观察运行状态</h3><p>AFL 运行后会显示实时状态，包括执行速度、路径数量、崩溃数量和挂起数量。第一次学习时，可以重点关注：</p>
+<ul>
+<li><code>total paths</code>：发现的路径数量。</li>
+<li><code>unique crashes</code>：唯一崩溃数量。</li>
+<li><code>exec speed</code>：每秒执行次数。</li>
+<li><code>cycles done</code>：队列遍历轮次。</li>
+</ul>
+<h2 id="输出目录"><a href="#输出目录" class="headerlink" title="输出目录"></a>输出目录</h2><p>运行下面的命令后：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afl-fuzz -i <span class="keyword">in</span> -o out ./target</span><br></pre></td></tr></table></figure>
 
-<p>在模糊测试过程中，AFL会在 <code>out</code> 目录中生成以下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">out/</span><br><span class="line">├── crashes/       # 导致崩溃的输入</span><br><span class="line">├── hangs/         # 导致程序挂起的输入</span><br><span class="line">├── queue/         # 有趣的测试用例</span><br><span class="line">├── fuzz_bitmap    # 覆盖信息</span><br><span class="line">├── fuzzer_stats   # 统计信息</span><br><span class="line">└── plot_data      # 进度数据</span><br></pre></td></tr></table></figure>
+<p><code>out/</code> 目录通常会包含这些内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">out/</span><br><span class="line">├── crashes/       # 导致崩溃的输入</span><br><span class="line">├── hangs/         # 导致程序超时或挂起的输入</span><br><span class="line">├── queue/         # AFL 保留下来的有趣测试用例</span><br><span class="line">├── fuzz_bitmap    # 覆盖率相关状态</span><br><span class="line">├── fuzzer_stats   # 模糊测试统计信息</span><br><span class="line">└── plot_data      # 用于绘制进度图的数据</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://storage.tttang.com/media/attachment/2022/03/26/d54c073e-b3cd-4ded-b45b-ea099b311caf.png" alt="overview.png"></p>
-<h2 id="三、AFL源码阅读"><a href="#三、AFL源码阅读" class="headerlink" title="三、AFL源码阅读"></a>三、AFL源码阅读</h2>
+<p>其中最常看的目录是 <code>crashes/</code>、<code>hangs/</code> 和 <code>queue/</code>。如果发现崩溃，下一步不是急着下结论，而是先复现：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./target &lt; out/crashes/id:000000,sig:11,src:000000,time:1234,op:havoc,rep:2</span><br></pre></td></tr></table></figure>
+
+<p>复现后再配合调试器、ASan 或源码阅读定位根因。</p>
+<h2 id="下一步阅读"><a href="#下一步阅读" class="headerlink" title="下一步阅读"></a>下一步阅读</h2><p>后续可以继续学习这些方向：</p>
+<ul>
+<li>AFL 的插桩机制和覆盖率反馈。</li>
+<li>测试用例变异策略。</li>
+<li>crash triage 和最小化复现样本。</li>
+<li>AFL++ 的新特性和实际工程配置。</li>
+<li>如何为复杂程序编写 harness。</li>
+</ul>
+
                 
             </div>
             <hr/>
@@ -686,7 +710,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            SQLMap 是一款开源的自动化 SQL 注入检测与利用工具，常用于授权场景下的 Web 安全测试。它可以帮助安全研究人员快速判断目标参数是否存在 SQL 注入风险，并进一步枚举数据库、表结构或验证漏洞影响。
                         
                     </div>
                     <div class="publish-info">

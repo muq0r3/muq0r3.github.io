@@ -463,64 +463,88 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="SQLMap"><a href="#SQLMap" class="headerlink" title="SQLMap"></a>SQLMap</h3><p><strong>SQLMap</strong> 是一款开源的自动化SQL注入工具，主要用于检测和利用Web应用程序中的SQL注入漏洞。它支持多种数据库管理系统（如MySQL、Oracle、PostgreSQL等）和多种注入技术，能够自动识别和利用漏洞，帮助安全研究人员和渗透测试人员评估Web应用的安全性。</p>
-<hr>
-<h4 id="1-基本命令格式"><a href="#1-基本命令格式" class="headerlink" title="1. 基本命令格式"></a>1. <strong>基本命令格式</strong></h4><p>SQLMap 的基本命令格式如下：</p>
+                <p>SQLMap 是一款开源的自动化 SQL 注入检测与利用工具，常用于授权场景下的 Web 安全测试。它可以帮助安全研究人员快速判断目标参数是否存在 SQL 注入风险，并进一步枚举数据库、表结构或验证漏洞影响。</p>
+<span id="more"></span>
+
+<h2 id="工具定位"><a href="#工具定位" class="headerlink" title="工具定位"></a>工具定位</h2><p>SQLMap 的核心价值在于自动化。它会根据目标响应尝试不同的注入技术，并给出较明确的检测结果。常见能力包括：</p>
+<ul>
+<li>识别 GET、POST、Cookie 等位置的可疑参数。</li>
+<li>支持布尔盲注、时间盲注、报错注入、联合查询注入等技术。</li>
+<li>支持 MySQL、PostgreSQL、Oracle、SQL Server 等常见数据库。</li>
+<li>可以枚举数据库、表、列，并在授权测试中导出数据。</li>
+</ul>
+<p>使用这类工具时要注意边界：只在自己拥有授权的系统、靶场或实验环境中测试。</p>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p>最常见的命令格式如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap [选项] -u &lt;目标URL&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>-u</code> 用来指定目标 URL，其他选项用于控制请求数据、数据库类型、测试强度和结果输出。</p>
+<h2 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h2><h3 id="目标指定"><a href="#目标指定" class="headerlink" title="目标指定"></a>目标指定</h3><p><code>-u</code> 用来指定目标 URL。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>--data</code> 用于 POST 请求，指定提交的数据。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/login&quot;</span> --data=<span class="string">&quot;username=admin&amp;password=123&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>--cookie</code> 用于指定 Cookie，适合需要登录态的页面。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --cookie=<span class="string">&quot;PHPSESSID=123456&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据库相关"><a href="#数据库相关" class="headerlink" title="数据库相关"></a>数据库相关</h3><p><code>--dbms</code> 用来指定数据库类型，可以减少无关探测。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --dbms=mysql</span><br></pre></td></tr></table></figure>
+
+<p><code>--dbs</code> 用来枚举数据库。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --dbs</span><br></pre></td></tr></table></figure>
+
+<p><code>-D</code> 指定数据库名，<code>--tables</code> 枚举该数据库中的表。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> -D my_database --tables</span><br></pre></td></tr></table></figure>
+
+<p><code>-T</code> 指定表名，<code>--columns</code> 枚举字段。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> -D my_database -T <span class="built_in">users</span> --columns</span><br></pre></td></tr></table></figure>
+
+<p><code>--dump</code> 用来导出数据。这个操作影响较大，只能在授权环境中使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> -D my_database -T <span class="built_in">users</span> --dump</span><br></pre></td></tr></table></figure>
+
+<h3 id="注入技术与测试强度"><a href="#注入技术与测试强度" class="headerlink" title="注入技术与测试强度"></a>注入技术与测试强度</h3><p><code>--technique</code> 可以限定测试技术，例如 <code>B</code> 表示布尔盲注，<code>T</code> 表示时间盲注，<code>E</code> 表示报错注入，<code>U</code> 表示联合查询注入。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --technique=B</span><br></pre></td></tr></table></figure>
+
+<p><code>--level</code> 控制测试等级，数值越高测试面越广。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --level=3</span><br></pre></td></tr></table></figure>
+
+<p><code>--risk</code> 控制测试风险，数值越高可能发送更有影响的 payload。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --risk=2</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件、命令与代理"><a href="#文件、命令与代理" class="headerlink" title="文件、命令与代理"></a>文件、命令与代理</h3><p><code>--file-read</code> 用于读取服务器文件，属于高影响操作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --file-read=<span class="string">&quot;/etc/passwd&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>--os-shell</code> 尝试获取系统交互式 Shell，只能在明确授权的测试中使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --os-shell</span><br></pre></td></tr></table></figure>
+
+<p><code>--proxy</code> 通过代理发送请求，便于配合 Burp Suite 等工具观察流量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --proxy=<span class="string">&quot;http://127.0.0.1:8080&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>--output-dir</code> 指定结果保存目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --output-dir=/tmp/sqlmap_output</span><br></pre></td></tr></table></figure>
+
+<h2 id="示例场景"><a href="#示例场景" class="headerlink" title="示例场景"></a>示例场景</h2><p>检测 URL 参数是否可能存在 SQL 注入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>枚举目标数据库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --dbs</span><br></pre></td></tr></table></figure>
+
+<p>导出指定表的数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> -D my_database -T <span class="built_in">users</span> --dump</span><br></pre></td></tr></table></figure>
+
+<p>测试 POST 请求参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/login&quot;</span> --data=<span class="string">&quot;username=admin&amp;password=123&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 tamper 脚本尝试绕过过滤规则：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --tamper=space2comment</span><br></pre></td></tr></table></figure>
+
+<h2 id="学习提醒"><a href="#学习提醒" class="headerlink" title="学习提醒"></a>学习提醒</h2><p>SQLMap 很适合帮助理解 SQL 注入的检测流程，但不要只停留在“会跑命令”。更好的学习方式是：</p>
 <ul>
-<li><code>-u</code>：指定目标 URL。</li>
-<li>其他选项用于指定数据库类型、注入技术、数据提取等。</li>
+<li>在靶场中对比手工注入和 SQLMap 自动化结果。</li>
+<li>观察不同参数下请求包和响应包的变化。</li>
+<li>理解每种注入技术成立的前提。</li>
+<li>把工具输出整理成漏洞验证报告，而不是直接复制命令结果。</li>
 </ul>
-<hr>
-<h4 id="2-常用参数详解"><a href="#2-常用参数详解" class="headerlink" title="2. 常用参数详解"></a>2. <strong>常用参数详解</strong></h4><h5 id="目标指定"><a href="#目标指定" class="headerlink" title="目标指定"></a><strong>目标指定</strong></h5><ul>
-<li><code>-u</code>：指定目标 URL。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span></span><br></pre></td></tr></table></figure></li>
-<li><code>--data</code>：用于 POST 请求，指定提交的数据。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/login&quot;</span> --data=<span class="string">&quot;username=admin&amp;password=123&quot;</span></span><br></pre></td></tr></table></figure></li>
-<li><code>--cookie</code>：指定 Cookie（用于需要身份验证的页面）。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --cookie=<span class="string">&quot;PHPSESSID=123456&quot;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h5 id="数据库相关"><a href="#数据库相关" class="headerlink" title="数据库相关"></a><strong>数据库相关</strong></h5><ul>
-<li><code>--dbms</code>：指定数据库类型（如 MySQL、Oracle、PostgreSQL 等）。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --dbms=mysql</span><br></pre></td></tr></table></figure></li>
-<li><code>--dbs</code>：枚举所有数据库。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --dbs</span><br></pre></td></tr></table></figure></li>
-<li><code>-D</code>：指定目标数据库。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> -D my_database</span><br></pre></td></tr></table></figure></li>
-<li><code>--tables</code>：枚举指定数据库中的所有表。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> -D my_database --tables</span><br></pre></td></tr></table></figure></li>
-<li><code>-T</code>：指定目标表。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> -D my_database -T <span class="built_in">users</span></span><br></pre></td></tr></table></figure></li>
-<li><code>--columns</code>：枚举指定表中的所有列。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> -D my_database -T <span class="built_in">users</span> --columns</span><br></pre></td></tr></table></figure></li>
-<li><code>--dump</code>：提取表中的数据。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> -D my_database -T <span class="built_in">users</span> --dump</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h5 id="注入技术"><a href="#注入技术" class="headerlink" title="注入技术"></a><strong>注入技术</strong></h5><ul>
-<li><code>--technique</code>：指定注入技术（如 B：布尔盲注，T：时间盲注，E：错误注入，U：联合查询注入）。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --technique=B</span><br></pre></td></tr></table></figure></li>
-<li><code>--level</code>：设置测试等级（1-5，默认 1，等级越高测试越全面）。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --level=3</span><br></pre></td></tr></table></figure></li>
-<li><code>--risk</code>：设置风险等级（1-3，默认 1，等级越高可能对目标影响越大）。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --risk=2</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h5 id="文件系统与命令执行"><a href="#文件系统与命令执行" class="headerlink" title="文件系统与命令执行"></a><strong>文件系统与命令执行</strong></h5><ul>
-<li><code>--file-read</code>：读取服务器上的文件。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --file-read=<span class="string">&quot;/etc/passwd&quot;</span></span><br></pre></td></tr></table></figure></li>
-<li><code>--os-shell</code>：获取操作系统的交互式 Shell。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --os-shell</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h5 id="代理与日志"><a href="#代理与日志" class="headerlink" title="代理与日志"></a><strong>代理与日志</strong></h5><ul>
-<li><code>--proxy</code>：通过代理发送请求。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --proxy=<span class="string">&quot;http://127.0.0.1:8080&quot;</span></span><br></pre></td></tr></table></figure></li>
-<li><code>--output-dir</code>：指定输出目录，保存测试结果。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --output-dir=/tmp/sqlmap_output</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h4 id="3-示例场景"><a href="#3-示例场景" class="headerlink" title="3. 示例场景"></a>3. <strong>示例场景</strong></h4><h5 id="场景-1：检测-SQL-注入漏洞"><a href="#场景-1：检测-SQL-注入漏洞" class="headerlink" title="场景 1：检测 SQL 注入漏洞"></a><strong>场景 1：检测 SQL 注入漏洞</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>该命令会自动检测目标 URL 是否存在 SQL 注入漏洞。</li>
-</ul>
-<h5 id="场景-2：提取数据库信息"><a href="#场景-2：提取数据库信息" class="headerlink" title="场景 2：提取数据库信息"></a><strong>场景 2：提取数据库信息</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --dbs</span><br></pre></td></tr></table></figure>
-<ul>
-<li>该命令会枚举目标服务器上的所有数据库。</li>
-</ul>
-<h5 id="场景-3：提取指定表的数据"><a href="#场景-3：提取指定表的数据" class="headerlink" title="场景 3：提取指定表的数据"></a><strong>场景 3：提取指定表的数据</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> -D my_database -T <span class="built_in">users</span> --dump</span><br></pre></td></tr></table></figure>
-<ul>
-<li>该命令会提取 <code>my_database</code> 数据库中 <code>users</code> 表的所有数据。</li>
-</ul>
-<h5 id="场景-4：POST-请求注入测试"><a href="#场景-4：POST-请求注入测试" class="headerlink" title="场景 4：POST 请求注入测试"></a><strong>场景 4：POST 请求注入测试</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/login&quot;</span> --data=<span class="string">&quot;username=admin&amp;password=123&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>该命令会测试 POST 请求中的参数是否存在 SQL 注入漏洞。</li>
-</ul>
-<h5 id="场景-5：绕过-WAF"><a href="#场景-5：绕过-WAF" class="headerlink" title="场景 5：绕过 WAF"></a><strong>场景 5：绕过 WAF</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://example.com/page?id=1&quot;</span> --tamper=space2comment</span><br></pre></td></tr></table></figure>
-<ul>
-<li>该命令会使用 <code>space2comment</code> 脚本绕过 WAF 的检测。</li>
-</ul>
-<hr>
 
                 
             </div>
@@ -646,15 +670,15 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="从零开始学习AFL">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="从零开始学习 AFL">
                         
-                        <span class="card-title">从零开始学习AFL</span>
+                        <span class="card-title">从零开始学习 AFL</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            AFL，也就是 American Fuzzy Lop，是一个经典的覆盖率引导模糊测试工具。它通过不断变异输入、观察程序执行路径和崩溃情况，帮助研究人员发现解析器、文件处理程序和 C&#x2F;C++ 程序中的潜在漏洞。
                         
                     </div>
                     <div class="publish-info">
@@ -711,7 +735,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            这篇笔记整理 Llama 2 的几个关键结构，作为后续理解 zkLLM、模型推理验证和大模型系统优化的基础。
                         
                     </div>
                     <div class="publish-info">
