@@ -82,7 +82,7 @@ mathjax: false
 
 - `title`：文章标题，也会出现在浏览器标题和首页卡片中。
 - `date`：发布时间。Hexo 按时间倒序排列文章。
-- `categories`：分类，通常一个文章放一个主分类。
+- `categories`：分类，通常一篇文章放一个主分类。
 - `tags`：关键词，可以多个。
 - `description`：摘要，用于首页和搜索引擎描述。
 - `cover: false`：不把文章设为首页封面轮播。
@@ -185,7 +185,7 @@ git push
 
 **新文章没有出现在首页**
 
-检查文件是否在 `source/_posts/`、Front Matter 是否以两行 `---` 结束，以及 `date` 是否晚于当前时间。`_config.yml` 中 `future: true` 允许未来日期的文章参与构建。
+检查文件是否在 `source/_posts/`、Front Matter 是否以两行 `---` 结束，以及 `date` 是否为有效的日期时间。`_config.yml` 中 `future: true` 会允许未来日期的文章参与构建。
 
 **文章里的图片 404**
 
