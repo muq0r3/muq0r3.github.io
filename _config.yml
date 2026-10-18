@@ -4,12 +4,12 @@
 
 # Site
 title: MuQ
-subtitle: ''
+subtitle: 'Embodied AI · 3D Vision · Security'
 description: '记录具身智能、三维视觉、强化学习、多模态模型与安全技术学习过程。'
 keywords: 具身智能, 三维视觉, NeRF, 3DGS, 强化学习, 多模态, 安全学习
 author: MuQ
 language: zh-CN
-timezone: ''
+timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -31,7 +31,7 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: :year-:month-:day-:title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link:
@@ -65,7 +65,7 @@ index_generator:
   order_by: -date
 
 # Category & Tag
-default_category: uncategorized
+default_category: 未分类
 category_map:
 tag_map:
 
@@ -80,7 +80,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+updated_option: 'date'
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -98,9 +98,24 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: hexo-theme-matery-master
 
-# Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: git@github.com:muq0r3/muq0r3.github.io.git
-  branch: master
+# Search
+## The Matery theme reads /search.xml from the generated site.
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
+
+# Feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
+
+# Deployment is handled by .github/workflows/pages.yml.
+## Do not use `hexo deploy` for this repository: it would push generated files
+## over the source branch. Commit and push the source, then let Actions publish.

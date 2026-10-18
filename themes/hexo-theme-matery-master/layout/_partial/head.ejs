@@ -25,7 +25,8 @@
     }
 
     // final page title.
-    var pageTitle = title ? title + ' | ' + config.title : config.title;
+    var pageTitle = (title && title !== config.title) ? title + ' | ' + config.title : config.title;
+    var canonicalUrl = page.__index ? config.url + '/' : full_url_for(page.path);
 
     // keywords.
     var keyWords = config.keywords ? config.keywords : config.title;
@@ -42,7 +43,7 @@
     } else if (page.hasOwnProperty('__post') && page.__post) {
         description = strip_html(page.content).substring(0, 120);
     }
-    description = description ? description : pageTitle;
+    description = description ? description : (page.__index ? config.description : pageTitle);
 
     let iconType = 'image/png'
     let faviconExt = theme.favicon.substr(theme.favicon.lastIndexOf('.') + 1, theme.favicon.length)
@@ -64,7 +65,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="<%= keyWords %>">
-    <meta name="description" content="<%= config.description %>">
+    <meta name="description" content="<%= description %>">
+    <meta name="author" content="<%= config.author %>">
+    <meta name="theme-color" content="#0f9d58">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -74,6 +77,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <%- partial('_partial/google-analytics') %>
     <title><%= pageTitle %></title>
+    <link rel="canonical" href="<%= canonicalUrl %>">
+    <meta property="og:site_name" content="<%= config.title %>">
+    <meta property="og:title" content="<%= pageTitle %>">
+    <meta property="og:description" content="<%= description %>">
+    <meta property="og:type" content="<%= page.__post ? 'article' : 'website' %>">
+    <meta property="og:url" content="<%= canonicalUrl %>">
+    <meta property="og:image" content="<%= full_url_for('/medias/cover.jpg') %>">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="<%= iconType %>" href="<%- theme.jsDelivr.url %><%- url_for(theme.favicon) %>">
 
     <link rel="stylesheet" type="text/css" href="<%- theme.jsDelivr.url %><%- url_for(theme.libs.css.fontAwesome) %>">

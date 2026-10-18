@@ -124,6 +124,29 @@
         </div>
     </article>
 
+    <% if (site.posts.length === 0) { %>
+    <section class="container empty-state" data-aos="fade-up">
+        <div class="card">
+            <div class="card-content">
+                <span class="empty-state__eyebrow">NEW START</span>
+                <h2>这里正在重新开始</h2>
+                <p>
+                    旧文章已经清理，新的记录会从真正完成一次思考之后发布。
+                    这里将围绕具身智能、三维视觉、强化学习与安全技术持续更新。
+                </p>
+                <div class="empty-state__actions">
+                    <a class="waves-effect waves-light btn" href="<%- url_for('/about/') %>">
+                        <i class="fas fa-user-circle"></i> 了解这个博客
+                    </a>
+                    <a class="btn-flat empty-state__link" href="https://github.com/muq0r3/muq0r3.github.io" target="_blank" rel="noopener">
+                        查看项目源码 <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <% } %>
+
 </main>
 
 <% if (page.total > 1) { %>

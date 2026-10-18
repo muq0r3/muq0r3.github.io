@@ -12,7 +12,9 @@
 
     <%- partial('_partial/footer') %>
 
+    <% if (theme.search && theme.search.enable && site.posts.length > 0) { %>
     <%- partial('_partial/search') %>
+    <% } %>
     <%- partial('_partial/back-top') %>
 
     <script src="<%- theme.jsDelivr.url %><%- url_for(theme.libs.js.materialize) %>"></script>

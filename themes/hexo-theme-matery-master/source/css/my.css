@@ -1,1 +1,204 @@
-/* Here is your custom css styles. */
+/* Project-specific refinements for MuQ's blog. */
+
+:root {
+    --site-ink: #17212b;
+    --site-muted: #617080;
+    --site-line: rgba(23, 33, 43, .1);
+    --site-accent: #0f9d58;
+    --site-accent-soft: #edf8f2;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--site-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+::selection {
+    color: #fff;
+    background: var(--site-accent);
+}
+
+.card {
+    border: 1px solid var(--site-line);
+    box-shadow: 0 14px 40px rgba(23, 33, 43, .08) !important;
+}
+
+.dream .text {
+    opacity: .75;
+    line-height: 1.9;
+}
+
+.profile .career {
+    margin-top: 6px;
+    color: var(--site-muted);
+    font-size: .88rem;
+}
+
+.introduction {
+    max-width: 780px;
+    margin: 26px auto 6px;
+    color: var(--site-muted);
+    line-height: 1.95;
+}
+
+.empty-state {
+    margin-top: 12px;
+}
+
+.empty-state .card {
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(15, 157, 88, .13), transparent 34%),
+        linear-gradient(145deg, #fff 0%, #f8fcfa 100%);
+}
+
+.empty-state .card-content {
+    padding: 48px 44px;
+    text-align: center;
+}
+
+.empty-state__eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: var(--site-accent);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .18em;
+}
+
+.empty-state h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+}
+
+.empty-state p {
+    max-width: 660px;
+    margin: 18px auto 28px;
+    color: var(--site-muted);
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.empty-state__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px 22px;
+}
+
+.empty-state .btn {
+    background: linear-gradient(135deg, #159f5f, #0c7d63);
+}
+
+.empty-state__link {
+    color: var(--site-muted) !important;
+}
+
+.empty-state__link i {
+    margin-left: 6px;
+    font-size: .8em;
+}
+
+.about-content {
+    max-width: 860px;
+    margin: 34px auto 0;
+    padding-top: 4px;
+    color: #33414f;
+    line-height: 1.95;
+    text-align: left;
+}
+
+.about-content h2 {
+    margin: 2rem 0 .8rem;
+    color: var(--site-ink);
+    font-size: 1.45rem;
+    font-weight: 700;
+}
+
+.about-content ul {
+    padding-left: 1.2rem;
+}
+
+.about-content li {
+    margin: .45rem 0;
+}
+
+.article-card-content {
+    font-size: 1.01rem;
+    line-height: 1.95;
+}
+
+#articleContent h2 {
+    margin-top: 2.5rem;
+    padding-bottom: .55rem;
+    border-bottom: 1px solid var(--site-line);
+}
+
+#articleContent h3 {
+    margin-top: 1.9rem;
+}
+
+#articleContent p {
+    margin: 1rem 0;
+}
+
+#articleContent a {
+    color: #087d57;
+    border-bottom: 1px solid rgba(8, 125, 87, .25);
+}
+
+#articleContent img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(23, 33, 43, .1);
+}
+
+#articleContent blockquote {
+    margin: 1.5rem 0;
+    padding: 14px 20px;
+    border-left: 4px solid var(--site-accent);
+    background: var(--site-accent-soft);
+    color: #405064;
+}
+
+#articleContent pre {
+    border-radius: 12px;
+}
+
+#articleContent table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+@media only screen and (max-width: 601px) {
+    .empty-state .card-content {
+        padding: 34px 20px;
+    }
+
+    .empty-state h2 {
+        font-size: 1.55rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
