@@ -67,8 +67,8 @@ cover:
 dream:
   enable: true
   showTitle: true
-  title: 从今天开始，认真记录
-  text: 这里会持续整理具身智能、三维视觉、强化学习与安全技术的学习轨迹。旧的实验记录已经归档，新的文章会从第一个真正值得复述的问题开始。
+  title: 这个博客写什么
+  text: 主要放我的技术学习记录。最近在看具身智能、三维视觉和强化学习，也会写一些安全方向的内容。文章大多是自己整理的笔记，不一定完整。
 
 # Whether to display the musics.
 # 是否在首页显示音乐.
@@ -205,8 +205,8 @@ clicklove:
 # 在”关于”页面中配置个人信息，包括头像、职业和个人介绍.
 profile:
   avatar: /medias/avatar.jpg
-  career: Software Engineer · Learning Embodied AI
-  introduction: 我把这里当作长期学习笔记：不只收藏结论，也记录问题是怎么被提出、验证和修正的。近期关注具身智能、三维视觉、强化学习与安全技术。
+  career: 软件工程师，在学具身智能
+  introduction: 软件工程师，在学具身智能。这里主要放学习笔记和做过的东西，偶尔也写安全方向的内容。
 
 # config my projects informations in about page.
 # If you don't want to display this `My Projects` content, you can deactivate or delete this configuration.
@@ -567,8 +567,8 @@ subtitle:
   startDelay: 300 # 开始延迟
   typeSpeed: 100 # 打字速度
   backSpeed: 50 # 删除速度
-  sub1: 记录具身智能、三维视觉与安全技术
-  sub2: Learning in public, one question at a time
+  sub1: 最近主要看具身智能、三维视觉和强化学习
+  sub2: 也会记录安全、模糊测试和密码学
 
 # 手机二级菜单.
 navMenu:

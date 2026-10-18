@@ -62,15 +62,6 @@ body {
     text-align: center;
 }
 
-.empty-state__eyebrow {
-    display: inline-block;
-    margin-bottom: 12px;
-    color: var(--site-accent);
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .18em;
-}
-
 .empty-state h2 {
     margin: 0;
     font-size: 2rem;
