@@ -1,44 +1,56 @@
-<%- partial('_partial/bg-cover') %>
+<%
+var hasComments = (theme.gitalk && theme.gitalk.enable) ||
+    (theme.gitment && theme.gitment.enable) ||
+    (theme.disqus && theme.disqus.enable) ||
+    (theme.livere && theme.livere.enable) ||
+    (theme.valine && theme.valine.enable) ||
+    (theme.minivaline && theme.minivaline.enable) ||
+    (theme.changyan && theme.changyan.enable);
+%>
 
-<main class="content">
-    <div id="contact" class="container chip-container">
-        <div class="card">
-            <div class="card-content">
-                <div class="tag-title center-align">
-                    <i class="fas fa-comments"></i>&nbsp;&nbsp;<%= __('contact') %>
-                </div>
-                <%- page.content %>
-            </div>
+<main class="page-main contact-page">
+    <%- partial('_partial/page-header', {
+        title: '联系',
+        kicker: 'CONTACT',
+        description: '技术问题、论文讨论，或者只是打个招呼。'
+    }) %>
+
+    <div class="container contact-shell">
+        <div class="contact-copy">
+            <%- page.content %>
         </div>
-        <div class="card">
-            <% if (theme.gitalk && theme.gitalk.enable) { %>
-            <%- partial('_partial/gitalk') %>
-            <% } %>
 
-            <% if (theme.gitment.enable) { %>
-            <%- partial('_partial/gitment') %>
+        <div class="contact-links">
+            <% if (theme.socialLink.email) { %>
+            <a class="contact-link" href="mailto:<%= theme.socialLink.email %>">
+                <span><small>Email</small><%= theme.socialLink.email %></span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
             <% } %>
-
-            <% if (theme.disqus.enable) { %>
-            <%- partial('_partial/disqus') %>
+            <% if (theme.socialLink.github) { %>
+            <a class="contact-link" href="<%= theme.socialLink.github %>" target="_blank" rel="noopener">
+                <span><small>GitHub</small><%= theme.socialLink.github.replace('https://github.com/', '@') %></span>
+                <i class="fab fa-github"></i>
+            </a>
             <% } %>
-
-            <% if (theme.livere && theme.livere.enable) { %>
-            <%- partial('_partial/livere') %>
+            <% if (theme.socialLink.qq) { %>
+            <a class="contact-link" href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=<%= theme.socialLink.qq %>">
+                <span><small>QQ</small><%= theme.socialLink.qq %></span>
+                <i class="fab fa-qq"></i>
+            </a>
             <% } %>
-
-            <% if (theme.valine && theme.valine.enable) { %>
-            <%- partial('_partial/valine') %>
-            <% } %>
-			
-			<% if (theme.minivaline && theme.minivaline.enable) { %>
-            <%- partial('_partial/minivaline') %>
-            <% } %>
-
-            <% if (theme.changyan && theme.changyan.enable) { %>
-                <%- partial('_partial/changyan') %>
-            <% } %>
-
         </div>
+
+        <% if (hasComments) { %>
+        <div class="contact-comments">
+            <% if (theme.gitalk && theme.gitalk.enable) { %><%- partial('_partial/gitalk') %><% } %>
+            <% if (theme.gitment && theme.gitment.enable) { %><%- partial('_partial/gitment') %><% } %>
+            <% if (theme.disqus && theme.disqus.enable) { %><%- partial('_partial/disqus') %><% } %>
+            <% if (theme.livere && theme.livere.enable) { %><%- partial('_partial/livere') %><% } %>
+            <% if (theme.valine && theme.valine.enable) { %><%- partial('_partial/valine') %><% } %>
+            <% if (theme.minivaline && theme.minivaline.enable) { %><%- partial('_partial/minivaline') %><% } %>
+            <% if (theme.changyan && theme.changyan.enable) { %><%- partial('_partial/changyan') %><% } %>
+        </div>
+        <% } %>
     </div>
 </main>

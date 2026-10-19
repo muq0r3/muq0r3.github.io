@@ -1,0 +1,11 @@
+<header class="page-banner">
+    <div class="container page-banner__inner">
+        <div>
+            <p class="page-banner__kicker"><%= kicker %></p>
+            <h1><%= title %></h1>
+        </div>
+        <% if (typeof description !== 'undefined' && description) { %>
+        <p class="page-banner__description"><%= description %></p>
+        <% } %>
+    </div>
+</header>

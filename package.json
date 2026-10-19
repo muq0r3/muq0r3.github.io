@@ -9,7 +9,8 @@
     "dev": "hexo server",
     "new": "hexo new",
     "new:page": "hexo new page",
-    "server": "hexo server"
+    "server": "hexo server",
+    "test": "npm run build && node --test tests/site-layout.test.js"
   },
   "hexo": {
     "version": "7.3.0"

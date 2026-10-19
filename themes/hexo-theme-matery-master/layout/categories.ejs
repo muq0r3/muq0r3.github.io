@@ -1,11 +1,25 @@
-<%- partial('_partial/bg-cover') %>
+<main class="page-main index-page">
+    <%- partial('_partial/page-header', {
+        title: '分类',
+        kicker: 'CATEGORIES',
+        description: '按主题浏览文章。'
+    }) %>
 
-<main class="content">
-
-    <%- partial('_widget/category-cloud') %>
-
-    <% if (site.categories && site.categories.length > 0) { %>
-    <%- partial('_widget/category-radar') %>
-    <% } %>
-
+    <section class="container term-index">
+        <% if (site.categories.length > 0) { %>
+        <div class="term-list">
+            <% site.categories.forEach(function (category) { %>
+            <a href="<%- url_for(category.path) %>">
+                <span><%= category.name %></span>
+                <em><%= category.length %></em>
+            </a>
+            <% }); %>
+        </div>
+        <% } else { %>
+        <div class="post-empty">
+            <span class="post-empty__index">00</span>
+            <div><h3>还没有分类</h3><p>发布文章并添加分类后，这里会自动生成索引。</p></div>
+        </div>
+        <% } %>
+    </section>
 </main>

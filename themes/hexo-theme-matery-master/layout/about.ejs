@@ -1,69 +1,29 @@
-<style type="text/css">
-    /* don't remove. */
-    .about-cover {
-        height: 75vh;
-    }
-</style>
+<main class="page-main about-page">
+    <%- partial('_partial/page-header', {
+        title: '关于我',
+        kicker: 'ABOUT',
+        description: '一个软件工程师的学习记录。'
+    }) %>
 
-<%- partial('_partial/bg-cover') %>
-
-<main class="content">
-
-    <div id="aboutme" class="container about-container">
-        <div class="card">
-            <div class="card-content">
-                <div class="row">
-                    <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
-                        <%- partial('_partial/post-statis') %>
-                    </div>
-                    <div class="col s12 m12 l4">
-                        <div class="profile center-align">
-                            <div class="avatar">
-                                <img src="<%- theme.jsDelivr.url %><%- url_for(theme.profile.avatar) %>" alt="<%- config.author %>"
-                                     class="circle responsive-img avatar-img">
-                            </div>
-                            <div class="author">
-                                <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
-                                    <%- partial('_partial/post-statis') %>
-                                </div>
-                                <div class="title"><%- config.author %></div>
-                                <div class="career"><%- theme.profile.career %></div>
-                                <div class="social-link hide-on-large-only" data-aos="zoom-in-left">
-                                    <%- partial('_partial/social-link') %>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l4 hide-on-med-and-down" data-aos="zoom-in-left">
-                        <div class="social-link">
-                            <%- partial('_partial/social-link') %>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="introduction center-align" data-aos="fade-up"><%= theme.profile.introduction %></div>
-
-                <% if (page.content && page.content.trim().length > 0) { %>
-                <div class="about-content article-card-content" data-aos="fade-up">
-                    <%- page.content %>
-                </div>
-                <% } %>
-
-                <%- partial('_widget/post-charts') %>
-
-                <% if (theme.myProjects && theme.myProjects.enable) { %>
-                <%- partial('_widget/my-projects') %>
-                <% } %>
-
-                <% if (theme.mySkills && theme.mySkills.enable) { %>
-                <%- partial('_widget/my-skills') %>
-                <% } %>
-
-                <% if (theme.myGallery && theme.myGallery.enable) { %>
-                <%- partial('_widget/my-gallery') %>
-                <% } %>
-
+    <div class="container about-shell">
+        <aside class="profile-panel">
+            <div class="profile-avatar">
+                <img src="<%- theme.jsDelivr.url %><%- url_for(theme.profile.avatar) %>"
+                     alt="<%- config.author %>">
             </div>
-        </div>
+            <p class="profile-panel__kicker">MuQ</p>
+            <h2><%= config.author %></h2>
+            <p class="profile-panel__career"><%= theme.profile.career %></p>
+            <div class="profile-panel__social">
+                <%- partial('_partial/social-link') %>
+            </div>
+            <div class="profile-panel__stats">
+                <%- partial('_partial/post-statis') %>
+            </div>
+        </aside>
+
+        <article class="about-reading">
+            <%- page.content %>
+        </article>
     </div>
 </main>

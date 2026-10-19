@@ -2,11 +2,19 @@
 <html lang="<%= config.language %>">
 <%- partial('_partial/head') %>
 
+<%
+let bodyClasses = 'site-body';
+if (is_home()) bodyClasses += ' is-home';
+if (is_post()) bodyClasses += ' is-post';
+if (page.layout === 'about') bodyClasses += ' is-about';
+if (page.layout === 'contact') bodyClasses += ' is-contact';
+%>
+
 <% if (theme.background.enable) { %>
    <%- partial('_partial/background') %>
 <% } %>
 
-<body>
+<body class="<%= bodyClasses %>">
     <%- partial('_partial/header') %>
     <%- body %>
 

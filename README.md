@@ -45,6 +45,12 @@ npm run build
 
 生成结果在 `public/`。这个目录不需要提交。
 
+检查首页、关于页和主题结构：
+
+```powershell
+npm test
+```
+
 ## 写一篇新文章
 
 在项目根目录执行：
@@ -166,6 +172,7 @@ git push
 ## 发布前检查清单
 
 - `npm run build` 成功。
+- `npm test` 成功。
 - 本地预览中文章标题、日期、分类和标签正确。
 - 图片路径使用 `/images/...` 或可访问的完整 URL。
 - 需要公式的文章已设置 `mathjax: true`。
