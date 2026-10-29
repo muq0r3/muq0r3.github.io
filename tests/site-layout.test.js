@@ -88,4 +88,5 @@ test('article typography keeps readable body and annotation sizes', () => {
   assert.match(css, /#articleContent p\s*{[^}]*font-size:\s*17px/s);
   assert.match(css, /\.note-badge\s*{[^}]*font-size:\s*12px/s);
   assert.match(css, /\.dataset-card span\s*{[^}]*font-size:\s*13px/s);
+  assert.match(css, /#toc-content\s*{[^}]*font-size:\s*15px/s);
 });
