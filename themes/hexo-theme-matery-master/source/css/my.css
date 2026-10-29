@@ -22,6 +22,7 @@
 }
 
 html {
+    font-size: 16px;
     scroll-behavior: smooth;
     background: var(--paper);
 }
@@ -67,7 +68,7 @@ a {
     margin: 0;
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: .13em;
     line-height: 1.4;
     text-transform: uppercase;
@@ -114,7 +115,7 @@ a {
     border-radius: 999px;
     background: transparent !important;
     color: var(--muted) !important;
-    font-size: 11px !important;
+    font-size: 12px !important;
     line-height: 25px !important;
 }
 
@@ -200,7 +201,7 @@ header .brand-logo > a {
     margin-left: 1px;
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .12em;
     text-transform: uppercase;
 }
@@ -294,7 +295,7 @@ header .button-collapse i {
     margin: 0;
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .14em;
     text-transform: uppercase;
 }
@@ -381,7 +382,7 @@ header .button-collapse i {
     align-items: center;
     gap: 8px;
     color: var(--ink) !important;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: .03em;
 }
@@ -408,7 +409,7 @@ header .button-collapse i {
 .hero-topics span {
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .08em;
     text-transform: uppercase;
 }
@@ -453,7 +454,7 @@ header .button-collapse i {
     margin-top: 16px;
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 12px;
     letter-spacing: .06em;
     line-height: 1.6;
     text-transform: uppercase;
@@ -549,7 +550,7 @@ header .button-collapse i {
     padding-bottom: 3px;
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12px;
 }
 
 /* Post list */
@@ -577,20 +578,20 @@ header .button-collapse i {
     gap: 3px;
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .03em;
 }
 
 .post-row__date time {
     color: var(--ink);
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .post-row__meta {
     margin-bottom: 8px;
     color: var(--accent);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .09em;
     text-transform: uppercase;
 }
@@ -609,7 +610,7 @@ header .button-collapse i {
     max-width: 700px;
     margin: 10px 0 0;
     color: var(--muted);
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.8;
 }
 
@@ -626,7 +627,7 @@ header .button-collapse i {
     border-radius: 999px;
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1.6;
 }
 
@@ -679,7 +680,7 @@ header .button-collapse i {
     max-width: 620px;
     margin: 0;
     color: var(--muted);
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.8;
 }
 
@@ -705,7 +706,7 @@ header .button-collapse i {
     margin: 0 0 13px;
     color: var(--accent);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .16em;
     text-transform: uppercase;
 }
@@ -722,7 +723,7 @@ header .button-collapse i {
 .page-banner__description {
     margin: 0 0 4px;
     color: var(--muted);
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.8;
     text-align: right;
 }
@@ -765,7 +766,7 @@ header .button-collapse i {
 .term-list em {
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     font-style: normal;
 }
 
@@ -806,7 +807,7 @@ header .button-collapse i {
     margin: 22px 0 4px;
     color: var(--accent);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .14em;
     text-transform: uppercase;
 }
@@ -822,7 +823,7 @@ header .button-collapse i {
 .profile-panel__career {
     margin: 7px 0 0;
     color: var(--muted);
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.7;
 }
 
@@ -875,7 +876,7 @@ header .button-collapse i {
 
 .profile-panel__stats .name {
     color: var(--muted);
-    font-size: 9px;
+    font-size: 12px;
     letter-spacing: .08em;
     text-transform: uppercase;
 }
@@ -883,8 +884,8 @@ header .button-collapse i {
 .about-reading {
     max-width: 720px;
     color: #3b4641;
-    font-size: 16px;
-    line-height: 1.95;
+    font-size: 17px;
+    line-height: 1.92;
 }
 
 .about-reading__lead {
@@ -925,7 +926,7 @@ header .button-collapse i {
 
 .about-reading li {
     position: relative;
-    margin: 9px 0;
+    margin: 11px 0;
     padding-left: 22px;
 }
 
@@ -956,8 +957,8 @@ header .button-collapse i {
 .contact-copy {
     max-width: 660px;
     color: #3b4641;
-    font-size: 17px;
-    line-height: 1.95;
+    font-size: 17.5px;
+    line-height: 1.92;
 }
 
 .contact-copy p {
@@ -988,7 +989,7 @@ header .button-collapse i {
 .contact-link small {
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 12px;
     letter-spacing: .12em;
     text-transform: uppercase;
 }
@@ -1087,7 +1088,7 @@ header .button-collapse i {
 .learning-course__count {
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .08em;
 }
 
@@ -1112,7 +1113,7 @@ header .button-collapse i {
 .lesson-item__chapter {
     color: var(--accent);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: .08em;
 }
 
@@ -1125,7 +1126,7 @@ header .button-collapse i {
 
 .lesson-item__body strong {
     color: var(--ink);
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 650;
     line-height: 1.45;
     transition: color .18s ease;
@@ -1133,14 +1134,14 @@ header .button-collapse i {
 
 .lesson-item__body > span {
     color: var(--muted);
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.7;
 }
 
 .lesson-item time {
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     text-align: right;
 }
 
@@ -1196,21 +1197,21 @@ header .button-collapse i {
 .learning-empty p {
     margin: 0;
     color: var(--muted);
-    font-size: 13px;
+    font-size: 14px;
 }
 
 /* Article note components */
 
 .section-icon {
     display: inline-grid;
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     margin-right: 7px;
     place-items: center;
     border-radius: 50%;
     background: var(--accent-soft);
     color: var(--accent);
-    font-size: 12px;
+    font-size: 13px;
     vertical-align: 2px;
 }
 
@@ -1219,12 +1220,12 @@ header .button-collapse i {
     align-items: center;
     gap: 6px;
     margin: 2px 0 10px;
-    padding: 4px 10px;
+    padding: 5px 11px;
     border: 1px solid var(--line);
     border-radius: 999px;
     color: var(--accent);
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 12px;
     letter-spacing: .06em;
     line-height: 1.5;
     text-transform: uppercase;
@@ -1260,8 +1261,8 @@ header .button-collapse i {
 .lesson-callout p {
     margin: 0 0 .6em !important;
     color: #43504a;
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 1.85;
 }
 
 .lesson-callout p:last-child {
@@ -1295,15 +1296,15 @@ header .button-collapse i {
     display: block;
     margin-bottom: 6px;
     color: var(--ink);
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .compare-card p,
 .robot-card p {
     margin: 0 !important;
     color: var(--muted);
-    font-size: 12.5px;
-    line-height: 1.75;
+    font-size: 14px;
+    line-height: 1.8;
 }
 
 .dataset-grid {
@@ -1332,13 +1333,13 @@ header .button-collapse i {
 
 .dataset-card strong {
     color: var(--ink);
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .dataset-card span {
     color: var(--muted);
-    font-size: 11px;
-    line-height: 1.55;
+    font-size: 13px;
+    line-height: 1.65;
 }
 
 .task-chips {
@@ -1357,7 +1358,7 @@ header .button-collapse i {
     border-radius: 999px;
     background: var(--surface);
     color: #48534e;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.45;
 }
 
@@ -1379,7 +1380,7 @@ header .button-collapse i {
     border-radius: 8px;
     background: var(--surface);
     color: var(--ink);
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .note-flow span i {
@@ -1388,7 +1389,7 @@ header .button-collapse i {
 
 .note-flow > i {
     color: var(--line-strong);
-    font-size: 10px;
+    font-size: 12px;
 }
 
 /* Article */
@@ -1404,7 +1405,7 @@ header .button-collapse i {
     gap: 8px 22px;
     color: var(--accent);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .11em;
     text-transform: uppercase;
 }
@@ -1423,7 +1424,7 @@ header .button-collapse i {
     max-width: 700px;
     margin: 22px 0 0;
     color: var(--muted);
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.85;
 }
 
@@ -1459,9 +1460,11 @@ header .button-collapse i {
 }
 
 #articleContent {
+    max-width: 780px;
+    margin: 0 auto;
     color: #303a36;
-    font-size: 16.5px;
-    line-height: 1.98;
+    font-size: 17px;
+    line-height: 1.92;
 }
 
 #articleContent h1,
@@ -1477,17 +1480,19 @@ header .button-collapse i {
     margin: 2.6em 0 .85em;
     padding-bottom: .5em;
     border-bottom: 1px solid var(--line);
-    font-size: 1.8rem;
+    font-size: 2rem;
     line-height: 1.3;
 }
 
 #articleContent h3 {
     margin: 2em 0 .7em;
-    font-size: 1.32rem;
+    font-size: 1.45rem;
 }
 
 #articleContent p {
     margin: 1.1em 0;
+    font-size: 17px;
+    line-height: 1.92;
 }
 
 #articleContent a {
@@ -1506,6 +1511,7 @@ header .button-collapse i {
     border-left: 3px solid var(--accent);
     background: var(--accent-soft);
     color: #40504a;
+    font-size: 17px;
 }
 
 #articleContent blockquote p {
@@ -1516,6 +1522,8 @@ header .button-collapse i {
     margin: 1.7em 0;
     border-radius: 10px;
     background: #202723;
+    font-size: 14.5px;
+    line-height: 1.75;
 }
 
 #articleContent :not(pre) > code {
@@ -1523,6 +1531,7 @@ header .button-collapse i {
     border-radius: 4px;
     background: var(--paper-deep);
     color: #244c41;
+    font-size: 14.5px;
 }
 
 #articleContent table {
@@ -1538,6 +1547,7 @@ header .button-collapse i {
     padding: 10px 14px;
     border: 1px solid var(--line);
     text-align: left;
+    font-size: 15px;
 }
 
 #articleContent th {
@@ -1552,8 +1562,13 @@ header .button-collapse i {
 
 .toc-widget .toc-title {
     color: var(--ink);
-    font-size: 13px !important;
+    font-size: 15px !important;
     letter-spacing: .04em;
+}
+
+#toc-content {
+    font-size: 14px;
+    line-height: 1.7;
 }
 
 #toc-content .toc-link:hover,
@@ -1616,14 +1631,14 @@ header .button-collapse i {
 .prev-next__item > span {
     color: var(--accent);
     font-family: var(--mono);
-    font-size: 9px;
+    font-size: 12px;
     letter-spacing: .08em;
     text-transform: uppercase;
 }
 
 .prev-next__item > strong {
     color: var(--ink);
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 650;
     line-height: 1.5;
 }
@@ -1677,7 +1692,7 @@ header .button-collapse i {
 .page-info {
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12px;
 }
 
 #backTop {
@@ -1699,7 +1714,7 @@ header .button-collapse i {
 
 .page-footer .copy-right {
     color: rgba(255, 255, 255, .58);
-    font-size: 11px;
+    font-size: 12px;
     line-height: 2;
 }
 
@@ -1893,7 +1908,7 @@ header .button-collapse i {
     }
 
     .hero-lede {
-        font-size: 15px;
+        font-size: 16px;
     }
 
     .hero-topics {
@@ -1942,7 +1957,7 @@ header .button-collapse i {
     }
 
     .post-row__summary {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .post-empty {
@@ -1999,7 +2014,7 @@ header .button-collapse i {
 
     .about-reading,
     .contact-copy {
-        font-size: 15.5px;
+        font-size: 16.5px;
     }
 
     .contact-shell {
@@ -2082,7 +2097,12 @@ header .button-collapse i {
     }
 
     #articleContent {
-        font-size: 15.5px;
+        font-size: 16.5px;
+    }
+
+    #articleContent p {
+        font-size: 16.5px;
+        line-height: 1.9;
     }
 }
 

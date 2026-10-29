@@ -79,3 +79,13 @@ test('public metadata no longer presents security research as a topic', () => {
   assert.doesNotMatch(about, /安全/);
   assert.doesNotMatch(home, /安全/);
 });
+
+test('article typography keeps readable body and annotation sizes', () => {
+  const css = readPublicFile('css/my.css');
+
+  assert.match(css, /html\s*{[^}]*font-size:\s*16px/s);
+  assert.match(css, /#articleContent\s*{[^}]*max-width:\s*780px/s);
+  assert.match(css, /#articleContent p\s*{[^}]*font-size:\s*17px/s);
+  assert.match(css, /\.note-badge\s*{[^}]*font-size:\s*12px/s);
+  assert.match(css, /\.dataset-card span\s*{[^}]*font-size:\s*13px/s);
+});
