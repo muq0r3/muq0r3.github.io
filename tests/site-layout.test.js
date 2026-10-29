@@ -44,3 +44,37 @@ test('custom stylesheet defines the editorial design tokens', () => {
   assert.match(css, /--ink:\s*#1c2421/);
   assert.match(css, /--accent:\s*#1f6a5a/);
 });
+
+test('day1 note is published with grouped sections and icon labels', () => {
+  const html = readPublicFile('2026/10/29/embodied-ai-basics/index.html');
+
+  assert.match(html, /具身智能基础/);
+  assert.match(html, /动作空间/);
+  assert.match(html, /Open X-Embodiment/);
+  assert.match(html, /Forward Kinematic/);
+  assert.match(html, /note-badge/);
+});
+
+test('learning page indexes completed course notes without status labels', () => {
+  const html = readPublicFile('learning/index.html');
+
+  assert.match(html, /class="[^"]*learning-shell[^"]*"/);
+  assert.doesNotMatch(html, /学习状态/);
+  assert.doesNotMatch(html, /在学|计划中/);
+});
+
+test('site navigation exposes the learning module', () => {
+  const html = readPublicFile('index.html');
+
+  assert.match(html, /href="\/learning"/);
+});
+
+test('public metadata no longer presents security research as a topic', () => {
+  const config = fs.readFileSync(path.join(__dirname, '..', '_config.yml'), 'utf8');
+  const about = fs.readFileSync(path.join(__dirname, '..', 'source', 'about', 'index.md'), 'utf8');
+  const home = readPublicFile('index.html');
+
+  assert.doesNotMatch(config, /安全/);
+  assert.doesNotMatch(about, /安全/);
+  assert.doesNotMatch(home, /安全/);
+});

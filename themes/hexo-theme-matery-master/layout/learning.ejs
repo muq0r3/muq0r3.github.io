@@ -1,0 +1,68 @@
+<%
+var lessons = site.pages
+    .filter(function (item) {
+        return item.courseSlug && item.layout === 'post';
+    })
+    .sort('order');
+
+var groups = [];
+var groupMap = {};
+
+lessons.forEach(function (lesson) {
+    if (!groupMap[lesson.courseSlug]) {
+        groupMap[lesson.courseSlug] = {
+            name: lesson.course || lesson.courseSlug,
+            icon: lesson.courseIcon || 'fas fa-book-open',
+            lessons: []
+        };
+        groups.push(groupMap[lesson.courseSlug]);
+    }
+    groupMap[lesson.courseSlug].lessons.push(lesson);
+});
+%>
+
+<main class="page-main learning-page">
+    <%- partial('_partial/page-header', {
+        title: '学习',
+        kicker: 'LEARNING',
+        description: '整理完成的课程笔记。'
+    }) %>
+
+    <div class="container learning-shell">
+        <% if (groups.length > 0) { %>
+            <% groups.forEach(function (group) { %>
+            <section class="learning-course">
+                <header class="learning-course__head">
+                    <div>
+                        <span class="learning-course__icon"><i class="<%= group.icon %>"></i></span>
+                        <h2><%= group.name %></h2>
+                    </div>
+                    <span class="learning-course__count"><%= group.lessons.length %> 讲</span>
+                </header>
+
+                <div class="lesson-list">
+                    <% group.lessons.forEach(function (lesson) { %>
+                    <a class="lesson-item" href="<%- url_for(lesson.path) %>">
+                        <span class="lesson-item__chapter"><%= lesson.chapter || '—' %></span>
+                        <span class="lesson-item__body">
+                            <strong><%= lesson.title %></strong>
+                            <% if (lesson.description) { %>
+                            <span><%= lesson.description %></span>
+                            <% } %>
+                        </span>
+                        <time datetime="<%- date(lesson.date, 'YYYY-MM-DD') %>"><%= date(lesson.date, 'YYYY.MM.DD') %></time>
+                        <span class="lesson-item__arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <% }); %>
+                </div>
+            </section>
+            <% }); %>
+        <% } else { %>
+        <div class="learning-empty">
+            <span class="learning-empty__icon"><i class="fas fa-book-open-reader"></i></span>
+            <h2>课程笔记还在整理中</h2>
+            <p>整理完成的课程内容会按课程放在这里。</p>
+        </div>
+        <% } %>
+    </div>
+</main>

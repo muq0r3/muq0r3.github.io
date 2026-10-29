@@ -4,6 +4,9 @@ menu:
   Index:
     url: /
     icon: fas fa-home
+  Learning:
+    url: /learning
+    icon: fas fa-book-open
   Tags:
     url: /tags
     icon: fas fa-tags
@@ -68,13 +71,14 @@ dream:
   enable: true
   showTitle: true
   title: 这个博客写什么
-  text: 主要放我的技术学习记录。最近在看具身智能、三维视觉和强化学习，也会写一些安全方向的内容。文章大多是自己整理的笔记，不一定完整。
+  text: 主要放我的技术学习记录。最近在看具身智能、三维视觉、模式识别和强化学习，也会整理课程内容。文章大多是自己整理的笔记，不一定完整。
 
 homeTopics:
   - 具身智能
   - 三维视觉
+  - 计算机视觉
+  - 模式识别
   - 强化学习
-  - 安全
 
 # Whether to display the musics.
 # 是否在首页显示音乐.
@@ -212,7 +216,7 @@ clicklove:
 profile:
   avatar: /medias/avatar.jpg
   career: 软件工程师，在学具身智能
-  introduction: 软件工程师，在学具身智能。这里主要放学习笔记和做过的东西，偶尔也写安全方向的内容。
+  introduction: 软件工程师，在学具身智能。这里主要放学习笔记、课程整理和做过的东西。
 
 # config my projects informations in about page.
 # If you don't want to display this `My Projects` content, you can deactivate or delete this configuration.
@@ -257,9 +261,6 @@ mySkills:
     多模态模型:
       background: 'linear-gradient(to right, #00897B 0%, #4DB6AC 100%)'
       percent: 30%
-    安全技术学习:
-      background: 'linear-gradient(to right, #455A64 0%, #78909C 100%)'
-      percent: 55%
 
 # config gallery of my photos in about page.
 # If you don't want to display this `Gallery` content, you can deactivate or delete this configuration.
@@ -574,7 +575,7 @@ subtitle:
   typeSpeed: 100 # 打字速度
   backSpeed: 50 # 删除速度
   sub1: 最近主要看具身智能、三维视觉和强化学习
-  sub2: 也会记录安全、模糊测试和密码学
+  sub2: 也会记录三维重建、模式识别和计算机视觉
 
 # 手机二级菜单.
 navMenu:

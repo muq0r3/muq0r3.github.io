@@ -97,6 +97,37 @@ mathjax: false
 
 文章文件名的日期不影响 URL；URL 由 `_config.yml` 里的 `permalink` 决定，当前格式是 `/年/月/日/标题/`。
 
+## 添加课程笔记
+
+学习板块只放整理完成的课程内容，不设置“在学”“计划中”等状态。
+
+1. 复制 `templates/lesson.md`。
+2. 放到 `source/learning/<课程短名>/`，例如 `source/learning/embodied-ai/lesson-01.md`。
+3. 修改 Front Matter 中的课程名、课程短名、章节、顺序和摘要。
+4. 写正文，运行 `npm run dev` 检查。
+
+课程笔记的 Front Matter 示例：
+
+```markdown
+---
+title: 第01讲 课程标题
+date: 2026-10-29 20:00:00
+layout: post
+course: 课程名称
+courseSlug: course-slug
+courseIcon: fas fa-book-open
+chapter: "01"
+order: 1
+description: 这节课主要整理了哪些内容。
+tags:
+  - 课程
+  - 学习笔记
+mathjax: false
+---
+```
+
+保存并重新构建后，`/learning/` 会自动按 `courseSlug` 分组，并按 `order` 排列课程笔记，不需要手工维护目录。
+
 ## 图片、公式和代码
 
 把图片放在 `source/images/<文章英文短名>/`，正文中用站内绝对路径引用：

@@ -2,7 +2,7 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
-  "description": "MuQ's personal blog about embodied AI, 3D vision, reinforcement learning and security.",
+  "description": "MuQ's personal blog about embodied AI, computer vision, pattern recognition and reinforcement learning.",
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
