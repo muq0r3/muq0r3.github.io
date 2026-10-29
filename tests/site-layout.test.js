@@ -53,6 +53,7 @@ test('day1 note is published with grouped sections and icon labels', () => {
   assert.match(html, /Open X-Embodiment/);
   assert.match(html, /Forward Kinematic/);
   assert.match(html, /note-badge/);
+  assert.doesNotMatch(html, /id="prenext-posts"/);
 });
 
 test('learning page indexes completed course notes without status labels', () => {

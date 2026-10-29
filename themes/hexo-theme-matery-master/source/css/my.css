@@ -1584,8 +1584,52 @@ header .button-collapse i {
     margin-top: 54px;
 }
 
-.prev-next .card {
+.prev-next__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.prev-next__item {
+    display: flex;
+    min-height: 112px;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
     background: var(--surface);
+    color: var(--ink) !important;
+    transition: border-color .18s ease, transform .18s ease;
+}
+
+.prev-next__item:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.prev-next__item--next {
+    text-align: right;
+}
+
+.prev-next__item > span {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.prev-next__item > strong {
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.5;
+}
+
+.prev-next__item--next {
+    grid-column: 2;
 }
 
 /* Search */
@@ -1986,6 +2030,14 @@ header .button-collapse i {
     .lesson-item__arrow {
         grid-column: 3;
         grid-row: 1 / span 2;
+    }
+
+    .prev-next__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .prev-next__item--next {
+        grid-column: 1;
     }
 
     .compare-grid,
